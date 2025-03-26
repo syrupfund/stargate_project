@@ -1,0 +1,24 @@
+# Sensitive data
+data/private_keys.txt
+data/proxies.txt
+data/database.json
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.env
+.venv
+env/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
