@@ -5,9 +5,11 @@ A powerful Python utility for bridging ETH tokens across various networks using 
 1. **Specific network-to-network bridging** with a simple command
 2. **LayerZero V2 endpoints** for efficient bridging with both "BUS" (economical) and "TAXI" (fast) modes
 3. **Multiple randomized bridges** automatically over time
+4. **Transaction history tracking** with detailed fee analysis
 
 ## Supported Networks
 
+- Ethereum Mainnet
 - Arbitrum
 - Optimism 
 - Base
@@ -23,8 +25,8 @@ A powerful Python utility for bridging ETH tokens across various networks using 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/layerzero-v2-bridge.git
-   cd layerzero-v2-bridge
+   git clone https://github.com/syrupfund/stargate_project.git
+   cd stargate_project
    ```
 
 2. Install dependencies:
@@ -81,6 +83,18 @@ Create a new Ethereum wallet:
 python main.py --mode new-wallet
 ```
 
+### View Transaction History
+
+View your bridging transaction history with fee information:
+
+```bash
+python main.py --mode history
+```
+
+Additional options:
+- `--wallet 0x123...` - Show history for a specific wallet address
+- `--limit 10` - Maximum number of transactions to show per wallet
+
 ## Configuration
 
 You can customize the behavior by editing `config.py`. Key settings include:
@@ -88,16 +102,22 @@ You can customize the behavior by editing `config.py`. Key settings include:
 - Bridge mode (BUS or TAXI)
 - Delay ranges
 - Balance percentage ranges
-- RPC endpoints
+- RPC endpoints: Note that RPC errors are frequent, so if any occur, go to chainlist.org to change the RPC. (Tip: Create an Infura account to get your own free RPC.)
 - Gas thresholds
 - Telegram notification settings
 
-## Security Notes
+## Transaction Database
 
-- **NEVER share your private keys**
-- Store your private keys securely
-- Consider using a new wallet for testing
-- Review the code before running it with your keys
+The tool maintains a transaction history database in `data/database.json` that tracks:
+
+- All bridge transactions per wallet
+- Success/failure status
+- Amount bridged
+- Source and destination chains
+- Gas fees in ETH and USD
+- Bridge fees in ETH and USD
+- Total fees paid
+- Current ETH price at time of transaction
 
 ## How It Works
 
@@ -108,6 +128,15 @@ You can customize the behavior by editing `config.py`. Key settings include:
 2. **LayerZero V2**: Uses the latest version of LayerZero protocol for efficient cross-chain bridging
 
 3. **Auto Bridge**: Randomly selects source/destination pairs, amounts, and modes for natural-looking bridging patterns
+
+4. **Fee Tracking**: Automatically tracks and analyzes all transaction fees, providing insights into bridging costs
+
+## Security Notes
+
+- **NEVER share your private keys**
+- Store your private keys securely
+- Consider using a new wallet for testing
+- Review the code before running it with your keys
 
 ## License
 

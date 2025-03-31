@@ -59,6 +59,7 @@ MAX_SLIPPAGE = 1
 # Gas price thresholds for chains (in GWEI)
 # If gas price exceeds threshold, the operation will be delayed
 GAS_THRESHOLDS = {
+    "Mainnet": {"enabled": True, "value": 1},
     "Arbitrum": {"enabled": True, "value": 0.1},
     "Optimism": {"enabled": True, "value": 0.01},
     "Base": {"enabled": True, "value": 0.1},
@@ -70,7 +71,7 @@ GAS_THRESHOLDS = {
 ########################### RPC Endpoints ###############################
 ##########################################################################
 
-# RPC URLs for all supported networks
+# RPC URLs for all supported networks (Tips: create an infura account for reliable RPC)
 MAINNET_RPC_URL = "https://eth.llamarpc.com"
 ARBITRUM_RPC_URL = "https://arbitrum.drpc.org"
 OPTIMISM_RPC_URL = "https://optimism.drpc.org"
@@ -83,12 +84,51 @@ BASE_RPC_URL = "https://base.drpc.org"
 ##########################################################################
 
 # Chain pairs for auto bridging (source -> destination)
+
 AUTO_BRIDGE_PAIRS = [
+    # Mainnet to all L2s
+    ("mainnet", "arbitrum"),
+    ("mainnet", "optimism"),
+    ("mainnet", "base"),
+    ("mainnet", "linea"),
+    ("mainnet", "scroll"),
+
+    # All L2s to Mainnet
+    ("arbitrum", "mainnet"),
+    ("optimism", "mainnet"),
+    ("base", "mainnet"),
+    ("linea", "mainnet"),
+    ("scroll", "mainnet"),
+
+    # Arbitrum to all other L2s
     ("arbitrum", "optimism"),
+    ("arbitrum", "base"),
+    ("arbitrum", "linea"),
+    ("arbitrum", "scroll"),
+
+    # Optimism to all other L2s
+    ("optimism", "arbitrum"),
     ("optimism", "base"),
+    ("optimism", "linea"),
+    ("optimism", "scroll"),
+
+    # Base to all other L2s
+    ("base", "arbitrum"),
+    ("base", "optimism"),
     ("base", "linea"),
+    ("base", "scroll"),
+
+    # Linea to all other L2s
+    ("linea", "arbitrum"),
+    ("linea", "optimism"),
+    ("linea", "base"),
     ("linea", "scroll"),
-    ("scroll", "arbitrum")
+
+    # Scroll to all other L2s
+    ("scroll", "arbitrum"),
+    ("scroll", "optimism"),
+    ("scroll", "base"),
+    ("scroll", "linea")
 ]
 
 # Number of times to bridge in auto mode

@@ -11,7 +11,7 @@ from web3 import AsyncWeb3
 
 from core.logger import logger
 from core.client import Client
-from core.models.chain import ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL
+from core.models.chain import MAINNET, ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL
 from core.utils import read_from_txt
 
 
@@ -33,8 +33,8 @@ async def check_balance() -> bool:
         return False
         
     # Define chains to check
-    chains = [ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL]
-    
+    chains = [MAINNET, ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL]
+
     # Initialize result table
     table = PrettyTable()
     table.field_names = ["Wallet", *[chain.name for chain in chains]]
@@ -98,8 +98,8 @@ async def get_total_value() -> float:
         return 0.0
     
     # Define chains to check
-    chains = [ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL]
-    
+    chains = [MAINNET, ARBITRUM, OPTIMISM, BASE, LINEA, SCROLL]
+
     total_eth = 0.0
     
     # Process each wallet

@@ -52,26 +52,26 @@ class Client:
     def init_web3(self, chain: Chain = None):
         """
         Initialize Web3 connection to the specified chain
-        
+
         Args:
             chain: Chain object with connection details
-            
+
         Returns:
             AsyncWeb3 instance connected to the specified chain
         """
         if not chain:
             raise ValueError("Chain must be specified")
-            
+
         if not chain.rpc:
             raise ValueError(f"No RPC endpoint specified for chain {chain.name}")
 
         request_kwargs = {"proxy": f"http://{self.proxy}"} if self.proxy else {}
         w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(endpoint_uri=chain.rpc, request_kwargs=request_kwargs))
-        
+
         # Add POA middleware for chains that need it
         if chain.requires_poa_middleware:
             w3.middleware_onion.inject(async_geth_poa_middleware, layer=0)
-            
+
         return w3
 
     def change_chain(self, chain: Chain) -> None:
@@ -209,11 +209,7 @@ class Client:
         Returns:
             Dictionary with max_priority_fee_per_gas and max_fee_per_gas
         """
-        w3 = self.init_web3(chain=self.chain)
-        
-        # Ensure POA middleware for chains that need it
-        if self.chain.requires_poa_middleware:
-            w3.middleware_onion.inject(async_geth_poa_middleware, layer=0)
+        w3 = self.w3
 
         last_block = await w3.eth.get_block("latest")
 

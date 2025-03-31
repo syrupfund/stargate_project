@@ -35,6 +35,7 @@ STARGATE_NATIVE_POOL_ABI = read_json(os.path.join(ABI_DIR, "stargate_native_pool
 # LayerZero V2 Stargate addresses for ETH (Native) Pools
 STARGATE_ETH_NATIVE_POOL_ADDRESSES = {
     # Chain IDs mapped to contract addresses
+    1: "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",      # Mainnet
     42161: "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F",  # Arbitrum
     10: "0xe8CDF27AcD73a434D661C84887215F7598e7d0d3",     # Optimism
     59144: "0x81F6138153d473E8c5EcebD3DC8Cd4903506B075",  # Linea

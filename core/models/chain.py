@@ -79,7 +79,8 @@ LINEA = Chain(
     coin_symbol="ETH",
     explorer="https://lineascan.build/",
     eip_1559=True,
-    lz_eid=30183
+    lz_eid=30183,
+    requires_poa_middleware=True
 )
 
 # Base
