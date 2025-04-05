@@ -18,7 +18,7 @@ A powerful Python utility for bridging ETH tokens across various networks using 
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.11.2
 - Web3.py and other dependencies listed in `requirements.txt`
 
 ## Installation
